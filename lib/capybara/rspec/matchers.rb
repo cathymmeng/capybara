@@ -2,7 +2,7 @@
 module Capybara
   module RSpecMatchers
     class Matcher
-      include ::RSpec::Matchers::Composable if defined?(::RSpec::Expectations::Version)
+      include ::RSpec::Matchers::Composable if defined?(::RSpec::Matchers)
 
       attr_reader :failure_message, :failure_message_when_negated
 
@@ -208,7 +208,7 @@ module Capybara
       MatchSelector.new(*args, &optional_filter_block)
     end
 
-    ::RSpec::Matchers.define_negated_matcher :not_match_selector, :match_selector
+    ::RSpec::Matchers.define_negated_matcher :not_match_selector, :match_selector if defined?(::RSpec::Matchers)
 
 
     # RSpec matcher for whether elements(s) matching a given xpath selector exist
